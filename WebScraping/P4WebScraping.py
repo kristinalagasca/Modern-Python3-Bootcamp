@@ -47,7 +47,7 @@ def start_game(all_quotes):
     guess = ''
     while guess.lower != quote["author"].lower() and remaining_guesses > 0:
         guess = input(f"Who said this quote? Guesses remaining {remaining_guesses}: ")
-        if guess.lower() == quote["author"].lower:
+        if guess.lower() == quote["author"].lower():
             print("YOU GOT IT!! :D")
             break
         remaining_guesses -= 1
@@ -57,11 +57,20 @@ def start_game(all_quotes):
             birth_date = soup.find(class_="author-born-date").get_text()
             birth_place = soup.find(class_="author-born-location").get_text()
             print(f"Here's a hint: The author was born on {birth_date} and {birth_place}.")
+            if guess.lower() == quote["author"].lower():
+                print("YOU GOT IT!! :D")
+                break
         elif remaining_guesses == 2:
             print(f"Here's a hint. Author's first name starts with: {quote['author'][0]}")
+            if guess.lower() == quote["author"].lower():
+                print("YOU GOT IT!! :D")
+                break
         elif remaining_guesses == 1:
             last_initial = quote['author'].split(" ")[1][0]
             print(f"Here's a hint. Author's last name starts with: {last_initial}")
+            if guess.lower() == quote["author"].lower():
+                print("YOU GOT IT!! :D")
+                break
         else:
             print(f"Sorry you ran out of guesses. The answer was {quote['author']}")
 
